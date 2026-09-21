@@ -3,9 +3,25 @@ name = "arxivbench"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
+    "datasets>=3.0",
+    "inspect-ai>=0.3.0",
     "matplotlib>=3.10.7",
     "numpy>=2.3.5",
     "scikit-learn>=1.7.2",
 ]
+
+# Registers the task with Inspect once the project is installed (`pip install -e .`),
+# so tools that discover tasks through the `inspect_ai` entry point find it.
+[project.entry-points.inspect_ai]
+arxivrollbench = "arxivrollbench"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# Only the Inspect task is a package; the research scripts at the repository
+# root are run in place.
+[tool.setuptools]
+packages = ["arxivrollbench"]
